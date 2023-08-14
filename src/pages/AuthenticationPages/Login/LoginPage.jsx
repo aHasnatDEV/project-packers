@@ -12,14 +12,14 @@ import alert_minor from '../../../assets/icon/alert_minor.svg';
 
 const LoginPage = () => {
     useTitle('Log in');
+    const { setUser, userLogIn } = useContext(AuthContext);
     const [emailError, setEmailError] = useState(false);
     const [passError, setPassError] = useState(false);
-    const { setUser } = useContext(AuthContext);
     const { previousLocation, savePreviousLocation } = usePreviousLocation();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || previousLocation || '/';
-    const { register, handleSubmit, control, reset } = useForm();
+    const { register, handleSubmit, control } = useForm();
 
     const errorBadge = (massage, badgeStyles) => <div
         className={`duration-300 ${badgeStyles && badgeStyles} ${massage ? 'opacity-100' : 'opacity-0'}`}
@@ -33,31 +33,32 @@ const LoginPage = () => {
     </div>
 
     const onSubmit = data => {
-        const email = import.meta.env.VITE_EMAIL;
-        const pass = import.meta.env.VITE_PASS;
-        console.log(email, pass);
+        // const email = import.meta.env.VITE_EMAIL;
+        // const pass = import.meta.env.VITE_PASS;
+        // console.log(email, pass);
 
-        if (data.email === '' || data.email !== email) {
+        if (data.email === '') {
             if (data.email === '') {
                 setEmailError('Please enter your email address');
                 setTimeout(() => setEmailError(false), '4000')
-            } else {
-                setEmailError('Please enter your valid email');
-                setTimeout(() => setEmailError(false), '4000')
-            }
+            } 
+            // else {
+            //     setEmailError('Please enter your valid email');
+            //     setTimeout(() => setEmailError(false), '4000')
+            // }
         }
-        if (data.password === '' || data.password !== pass) {
+        else if (data.password === '') {
             if (data.password === '') {
                 setPassError('Please enter your password address');
                 setTimeout(() => setPassError(false), '4000')
-            } else {
-                setPassError('Please enter your valid password');
-                setTimeout(() => setPassError(false), '4000')
-            }
-            setPassError(false);
+            } 
+            // else {
+            //     setPassError('Please enter your valid password');
+            //     setTimeout(() => setPassError(false), '4000')
+            // }
         }
-        if (data.password === pass && data.email === email) {
-            setUser(true);
+        else {
+            userLogIn(data);
             navigate(from, { replace: true });
             savePreviousLocation(null);
         }

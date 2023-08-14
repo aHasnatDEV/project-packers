@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import google from '../../../assets/icon/google-icon.svg';
 import facebook from '../../../assets/icon/facebook-icon.svg';
 import apple from '../../../assets/icon/apple-icon.svg';
@@ -8,13 +8,16 @@ import { useTitle } from '../../../Hooks/useTitle';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import PasswordSymbol from '../../../components/PasswordSymbol';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const SingUpPage = () => {
     useTitle('Sing up');
+    const { userSingIn } = useContext(AuthContext)
     const navigate = useNavigate();
     const { register, handleSubmit, control } = useForm();
+
     const onSubmit = data => {
-        console.log(data);
+        userSingIn(data);
         navigate('/authentication/log-in');
     }
 
@@ -36,16 +39,18 @@ const SingUpPage = () => {
                         <input
                             {...register("name")}
                             type='text'
+                            required={true}
                             className='w-[30rem] input-field px-5 py-4 text-sm'
                             placeholder='Enter Your Full Name'
                         />
                     </div>
                     <div className='mt-8'>
-                        <label className='text-white mb-2'>Email Address/ Phone number</label>
+                        <label className='text-white mb-2'>Email Address</label>
                         <br />
                         <input
                             {...register("email")}
-                            type='text'
+                            type='email'
+                            required={true}
                             className='w-[30rem] input-field px-5 py-4 text-sm'
                             placeholder='Enter Your Email Address'
                         />
@@ -59,6 +64,7 @@ const SingUpPage = () => {
                             international
                             placeholder="Enter phone number"
                             className='w-[30rem] input-field overflow-hidden bg-white py-4 px-5 mt-3'
+                            required={true}
                         />
                     </div>
                     <div className='mt-8'>
@@ -74,6 +80,7 @@ const SingUpPage = () => {
                             name="password"
                             defaultValue=""
                             control={control}
+                            required={true}
                             render={({ field }) => <PasswordSymbol width='[30rem]' py='4' placeholder='Enter Your Password' {...field} />}
                         />
                     </div>

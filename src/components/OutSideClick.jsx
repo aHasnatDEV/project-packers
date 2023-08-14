@@ -13,7 +13,7 @@ export function OutSideClick({ onClickOutside = Function, show = Boolean, body =
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        onClickOutside && onClickOutside();
+        onClickOutside && onClickOutside(false);
       }
     };
     document.addEventListener('click', handleClickOutside, true);

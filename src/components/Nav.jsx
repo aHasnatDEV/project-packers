@@ -58,7 +58,7 @@ const Nav = ({ isOpen, setOpen }) => {
                                 >
                                     <img src={avatar} alt='icon' />
                                 </Link>
-                                <p>Kodu</p>
+                                <p>{user?.name}</p>
                             </div>
                             :
                             <div className='ml-[2.5rem] flex gap-4'>
@@ -178,7 +178,7 @@ const Nav = ({ isOpen, setOpen }) => {
         return (
             <OutSideClick
                 show={isOpen}
-                onClickOutside={() => setOpen(false)}
+                onClickOutside={setOpen}
                 body={
                     <div className="lg:hidden fixed top-0 left-0 right-0 z-50 drop-shadow-2xl">
                         <div
