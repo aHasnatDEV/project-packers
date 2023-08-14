@@ -5,9 +5,9 @@ import User from './user.schema';
 /**
  * these are the set to validate the request body or query.
  */
-const createAllowed = new Set(['firstName', 'lastName', 'userName', 'email', 'password', 'role', 'gender', 'workingDays', 'dob', 'workingHours', 'maxProjectLimit', 'skillsets', 'status']);
-const allowedQuery = new Set(['firstName', 'lastName', 'username', 'page', 'limit', 'id', 'paginate', 'role']);
-const ownUpdateAllowed = new Set(['firstName', 'lastName', 'phone', 'avatar', 'passwordChange', 'data']);
+const createAllowed = new Set(['email', 'name', 'password', 'phone']);
+const allowedQuery = new Set(['email', 'name', 'password', 'phone' ,'page', 'limit', 'id', 'paginate', 'role']);
+const ownUpdateAllowed = new Set(['email', 'name', 'password', 'phone']);
 
 /**
  * Creates a new user in the database with the specified properties in the request body.
@@ -53,9 +53,10 @@ export const login = ({ db, settings }) => async (req, res) => {
   try {
     if (!req.body.email || !req.body.password) return res.status(400).send('Bad requests');
     const user = await db.findOne({ table: User, key: { email: req.body.email } });
+
     if (!user) return res.status(401).send('Unauthorized');
     const isValid = await bcrypt.compare(req.body.password, user.password);
-    if (!isValid) return res.status(401).send('Unauthorized');
+    if (!isValid) return res.status(401).send({message:'Wrong pass'});
     const token = jwt.sign({ id: user.id }, settings.secret);
     res.cookie(settings.secret, token, {
       httpOnly: true,

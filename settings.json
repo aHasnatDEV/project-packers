@@ -1,6 +1,6 @@
 {
   "port": 4000,
-  "origin": [],
+  "origin": ["http://localhost:5173"],
   "useHTTP2": false,
   "SMTP_HOST": "",
   "SMTP_PORT": "",
@@ -8,5 +8,6 @@
   "SMTP_PASSWORD": "",
   "EMAIL_NAME": "",
   "EMAIL_FROM": "from@example.com",
-  "MONGODB_URL": "mongodb+srv://hasnat1650:tuQWWTKyrg3ShLT2@cluster0.1twbd4u.mongodb.net/?retryWrites=true&w=majority"
+  "MONGODB_URL": "mongodb+srv://hasnat1650:tuQWWTKyrg3ShLT2@cluster0.1twbd4u.mongodb.net/?retryWrites=true&w=majority",
+  "secret": "coredevs"
 }

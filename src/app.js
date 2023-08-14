@@ -78,9 +78,11 @@ export default class App {
     //   }));
     this.express.use(
       cors({
-        origin: 'http://localhost:5173',
-        credentials: true
-      }));
+        origin: this.config.origin,
+        methods: 'GET,POST,PUT,DELETE,PATCH',
+        credentials: true,
+      })
+    );
     this.express.use(morgan('common')); // Logger
     this.express.use(actuator({ infoGitMode: 'full' })); // Health Checker
     this.express.use(json()); // Parse JSON response
