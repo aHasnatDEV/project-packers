@@ -1,5 +1,5 @@
 import { auth, checkRole } from '../middlewares';
-import { getAll, login, logout, me, register, remove, updateOwn, updateUser, userProfile } from './user.entity';
+import { fetchUser, getAll, login, logout, me, register, remove, updateOwn, updateUser, userProfile } from './user.entity';
 
 export default function user() {
 
@@ -60,9 +60,16 @@ export default function user() {
   this.route.patch('/user/:id', auth, checkRole(['admin']), updateUser(this));
 
   /**
-* DELETE ‘/user/:id’
-* @description this route is used to delte user profile.
-* @response {Object} 200 - the user.
-*/
+  * DELETE ‘/user/:id’
+  * @description this route is used to delte user profile.
+  * @response {Object} 200 - the user.
+  */
   this.route.delete('/user/:id', auth, checkRole(['admin', 'super-admin']), remove(this));
+
+  /**
+  * GET '/login/success'
+  * @description this route is send the user data after social login
+  * @response {Object} 200 - the user.
+  */
+  this.route.get('/login/success', fetchUser(this));
 }

@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from './user.schema';
+import decodeAuthToken from '../../utils/decodeAuthToken';
 
 /**
  * these are the set to validate the request body or query.
@@ -40,7 +41,6 @@ export const register = ({ db }) => async (req, res) => {
     res.status(500).send('Something went wrong.');
   }
 };
-
 
 
 /**
@@ -226,5 +226,36 @@ export const remove = ({ db }) => async (req, res) => {
   catch (err) {
     console.log(err);
     res.status(500).send({ message: 'Something went wrong' });
+  }
+};
+
+/**
+* This function is used send user data to the frontend after login.
+* @param {Object} req This is the request object.
+* @param {Object} res this is the response object
+* @returns the user.
+*/
+export const fetchUser = ({ settings }) => async (req, res) => {
+  try {
+    if (!req.user && !req.cookies[settings.secret]) return res.status(400).send({ message: 'Bad Request', status: false });
+    if (req.user) {
+      const token = jwt.sign({ id: req.user.id }, settings.secret);
+      res.cookie(settings.secret, token, {
+        httpOnly: true,
+        ...settings.useHTTP2 && {
+          sameSite: 'None',
+          secure: true,
+        },
+        expires: new Date(Date.now() + 172800000/*2 days*/),
+      });
+      return res.status(200).send(req.user);
+    }
+    const token = req.cookies[settings.secret];
+    const user = await decodeAuthToken(token);
+    res.status(200).send(user);
+  }
+  catch (err) {
+    console.log(err);
+    res.status(500).send({ message: 'Something went wrong', status: false });
   }
 };

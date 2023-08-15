@@ -3,7 +3,8 @@ import paginate from 'mongoose-paginate-v2';
 
 const schema = new Schema({
   productName: { type: String, required: true },
-  productImg: { type: String, required: true },
+  productThumbnail: { type: String, required: true },
+  productImages: { type: Array },
   productQuantity: { type: Number, required: true },
   price: { type: Number, required: true },
   category: { type: String, required: true },
