@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
-import img1 from '../../assets/Rectangle 1.png';
-import img2 from '../../assets/product-2.png';
-import img3 from '../../assets/product-3.png';
+import React, { useEffect, useState } from 'react';
 
-const ProductGallery = () => {
-    const [presentImage, setPresentImage] = useState(img1);
+/**
+ * @param {Object} productData single product object
+ * @returns product gallery
+ */
+const ProductGallery = ({ productData = Object }) => {
+    const [presentImage, setPresentImage] = useState('');
+    useEffect(()=>setPresentImage(productData?.productThumbnail),[productData]);
 
-    const imgFn = (imgSrc) => <img
+    const imgSrc = productData?.productImages;
+
+    const imgFn = (imgSrc, key) => <img
+        key={key}
         onClick={() => setPresentImage(imgSrc)}
-        className='border rounded-xl cursor-pointer duration-200 active:scale-75 w-full'
+        className='border rounded-xl cursor-pointer duration-200 active:scale-75 w-full object-cover'
         src={imgSrc} alt="product image"
     />;
-
-    const imgSrc = [img1, img2, img3, img1, img2, img3]
 
     return (
         <div className='w-full h-[50vh] lg:h-full flex gap-4'>
             <aside className='w-1/4 h-full flex flex-col gap-4 overflow-auto no-scrollbar'>
                 {
-                    imgSrc.map(src => imgFn(src))
+                    imgSrc?.map((src, i) => imgFn(src, i))
                 }
             </aside>
             <aside className='w-full h-full flex-1'>

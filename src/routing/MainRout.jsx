@@ -60,8 +60,9 @@ export const router = createBrowserRouter([
                 element: <AllProductsLayout />
             },
             {
-                path: '/product',
-                element: <SingleProductLayout />
+                path: '/product/:id',
+                element: <SingleProductLayout />,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_BASE_URL}/products/${params.id}`)
             },
             {
                 path: '/cart',

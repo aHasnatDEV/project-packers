@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import icon from '../../assets/icon/cd-filter.svg';
 import arrow from '../../assets/icon/cd-arrow-right-2.svg';
 
 const LeftNav = () => {
+    const [category, setCategory] = useState('');
+
     const menuList = <ul className='mt-4 bg-white px-8 py-4 lg:py-0 text-[#475569] flex flex-col gap-4'>
         <li>
             <span className='flex justify-between items-center'>

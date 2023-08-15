@@ -1,5 +1,4 @@
 import Cart from "../../../components/Cart";
-import image from '../../../assets/Rectangle 1.png';
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -12,7 +11,7 @@ const TrendingProducts = () => {
             method: 'GET',
             withCredentials: true
         };
-        fetch(`${import.meta.env.VITE_BASE_URL}/products`, options)
+        fetch(`${import.meta.env.VITE_BASE_URL}/products?limit=8`, options)
             .then(response => response.json())
             .then(response => {
                 setPresentArray(response)
@@ -25,10 +24,11 @@ const TrendingProducts = () => {
         <p className="mt-4 text-center text-lg text-gray-400">Get inspired by what people in your city are buying from abroad with<br /> the biggest savings</p>
         <div className="mt-12 bg-slate-200 py-[1px] grid lg:grid-cols-4 gap-[1px]">
             {
-                productArray?.docs?.slice(0, 8).map(product => {
+                productArray?.docs?.map(product => {
                     return <Cart
                         key={product.id}
-                        img={product.productImg}
+                        id={product.id}
+                        img={product.productThumbnail}
                         title={product.productName}
                         price={product.price}
                     />

@@ -3,7 +3,6 @@ import Breadcrumb from '../../components/Breadcrumb';
 import { useTitle } from '../../Hooks/useTitle';
 import img from '../../assets/Assets-Rene-4.svg';
 import person from '../../assets/Ellipse.png';
-import blogImg from '../../assets/Rene.svg';
 
 const SingleBlogLayout = () => {
     useTitle('Validate your product and the market');

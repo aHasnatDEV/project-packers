@@ -2,12 +2,16 @@ import React from 'react';
 import icon from '../../assets/money-back.svg';
 import { Link } from 'react-router-dom';
 
-const ProductInfo = () => {
+/**
+ * @param {Object} productData single product object
+ * @returns product info
+ */
+const ProductInfo = ({ productData = Object }) => {
     return (
         <div className='w-full h-full border rounded-xl px-5'>
             <div className='w-full py-4 border-b flex justify-between items-center'>
                 <h4 className='md:text-lg'>Product Price</h4>
-                <h4 className='text-2xl font-semibold'>$450.00</h4>
+                <h4 className='text-2xl font-semibold'>${productData?.price}</h4>
             </div>
             <div className='py-4 text-lg w-full'>
                 <p className='text-[#475569]'>Product Form</p>

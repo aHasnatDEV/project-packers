@@ -6,7 +6,7 @@ import notification from '../assets/icon/cd-notification-01.svg';
 import support from '../assets/icon/cd-customer-support-01.svg';
 import logout from '../assets/icon/logout.svg';
 import products from '../assets/icon/cd-products.svg';
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import usePreviousLocation from "../Hooks/usePreviousLocation";
 import searchYellow from '../assets/icon/cd-search-yellow.svg';
@@ -16,9 +16,20 @@ import ProductsDropdown from "./Dropdown/ProductsDropdown";
 import { OutSideClick } from "./OutSideClick";
 
 const Nav = ({ isOpen, setOpen }) => {
-    const { user } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
     const { savePreviousLocation } = usePreviousLocation();
     const location = useLocation();
+    
+    useEffect(() => {
+        const options = {
+            method: 'GET',
+            credentials: "include"
+        };
+        fetch(`${import.meta.env.VITE_BASE_URL}/login/success`, options)
+            .then(response => response.json())
+            .then(response => response.status === false ? '': setUser(response))
+            .catch(err => console.error(err));
+    }, [])
 
     const lgNav = () => {
         return (

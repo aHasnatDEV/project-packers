@@ -5,30 +5,26 @@ const YouTubeShots = ({ isHome = Boolean }) => {
 
     const slides = [
         {
-            videoId: 'odrNK0Y_z-M'
+            videoId: 'dqeklvD30EA'
         },
         {
-            videoId: 'SLLwm4KU_jQ'
+            videoId: 'gcJe6Hhwiaw'
         },
         {
-            videoId: 'J6kmBWMD8MA'
+            videoId: 'CKySIlyliMg'
         },
         {
-            videoId: 'pMMeqBiEiAk'
+            videoId: 'V9Z7_6HCPsA'
         },
         {
-            videoId: 'hxWELDpI7IM'
+            videoId: '3h5V8LN0lTc'
         },
         {
-            videoId: 'hxWELDpI7IM'
+            videoId: 'ziAotzUqn1c'
         },
         {
-            videoId: 'hxWELDpI7IM'
-        }, {
-            videoId: 'hxWELDpI7IM'
-        }, {
-            videoId: 'hxWELDpI7IM'
-        },
+            videoId: 'sd3LWOJQg28'
+        }
     ];
 
     return <section
