@@ -10,7 +10,7 @@ export default function products() {
   this.route.get('/products', allProducts(this));
 
   /**
-    * GET / products
+    * GET / products / :id
     * @description This route is used to get single product by id.
     * @response {Object} 200 - single products by id.
     */

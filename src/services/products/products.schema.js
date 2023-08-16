@@ -13,7 +13,7 @@ const schema = new Schema({
   comparePrice: { type: Number, required: true },
   tags: { type: Array, required: true },
   description: { type: String },
-},{timestamps:true});
+}, { timestamps: true });
 
 schema.plugin(paginate);
 schema.methods.toJSON = function () {
