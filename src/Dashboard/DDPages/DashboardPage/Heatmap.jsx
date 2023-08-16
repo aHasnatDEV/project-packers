@@ -4,7 +4,7 @@ import ReactApexChart from 'react-apexcharts';
 
 const heatMap = [
     {
-        name: "6 am",
+        name: "3 am",
         data: [
             {
                 x: "Mon",
@@ -16,7 +16,7 @@ const heatMap = [
             },
             {
                 x: "Wed",
-                y: 43,
+                y: 23,
             },
             {
                 x: "Thu",
@@ -24,7 +24,7 @@ const heatMap = [
             },
             {
                 x: "Fri",
-                y: 43,
+                y: 40,
             },
             {
                 x: "Sat",
@@ -42,11 +42,176 @@ const heatMap = [
         data: [
             {
                 x: "Mon",
+                y: 30,
+            },
+            {
+                x: "Tue",
+                y: 43,
+            },
+            {
+                x: "Wed",
+                y: 43,
+            },
+            {
+                x: "Thu",
+                y: 13,
+            },
+            {
+                x: "Fri",
+                y: 43,
+            },
+            {
+                x: "Sat",
+                y: 73,
+            },
+            {
+                x: "Sun",
+                y: 43,
+            },
+        ],
+    },
+    {
+        name: "9 am",
+        data: [
+            {
+                x: "Mon",
                 y: 43,
             },
             {
                 x: "Tue",
                 y: 43,
+            },
+            {
+                x: "Wed",
+                y: 43,
+            },
+            {
+                x: "Thu",
+                y: 53,
+            },
+            {
+                x: "Fri",
+                y: 43,
+            },
+            {
+                x: "Sat",
+                y: 43,
+            },
+            {
+                x: "Sun",
+                y: 42,
+            },
+        ],
+    },
+    {
+        name: "12 am",
+        data: [
+            {
+                x: "Mon",
+                y: 43,
+            },
+            {
+                x: "Tue",
+                y: 30,
+            },
+            {
+                x: "Wed",
+                y: 43,
+            },
+            {
+                x: "Thu",
+                y: 43,
+            },
+            {
+                x: "Fri",
+                y: 43,
+            },
+            {
+                x: "Sat",
+                y: 43,
+            },
+            {
+                x: "Sun",
+                y: 0,
+            },
+        ],
+    },
+    {
+        name: "3 pm",
+        data: [
+            {
+                x: "Mon",
+                y: 43,
+            },
+            {
+                x: "Tue",
+                y: 43,
+            },
+            {
+                x: "Wed",
+                y: 63,
+            },
+            {
+                x: "Thu",
+                y: 43,
+            },
+            {
+                x: "Fri",
+                y: 43,
+            },
+            {
+                x: "Sat",
+                y: 23,
+            },
+            {
+                x: "Sun",
+                y: 43,
+            },
+        ],
+    },
+    {
+        name: "6 pm",
+        data: [
+            {
+                x: "Mon",
+                y: 23,
+            },
+            {
+                x: "Tue",
+                y: 43,
+            },
+            {
+                x: "Wed",
+                y: 43,
+            },
+            {
+                x: "Thu",
+                y: 83,
+            },
+            {
+                x: "Fri",
+                y: 43,
+            },
+            {
+                x: "Sat",
+                y: 43,
+            },
+            {
+                x: "Sun",
+                y: 43,
+            },
+        ],
+    },
+    {
+        name: "9 pm",
+        data: [
+            {
+                x: "Mon",
+                y: 43,
+            },
+            {
+                x: "Tue",
+                y: 73,
             },
             {
                 x: "Wed",
@@ -71,7 +236,7 @@ const heatMap = [
         ],
     },
     {
-        name: "6 am",
+        name: "12 pm",
         data: [
             {
                 x: "Mon",
@@ -79,172 +244,7 @@ const heatMap = [
             },
             {
                 x: "Tue",
-                y: 43,
-            },
-            {
-                x: "Wed",
-                y: 43,
-            },
-            {
-                x: "Thu",
-                y: 43,
-            },
-            {
-                x: "Fri",
-                y: 43,
-            },
-            {
-                x: "Sat",
-                y: 43,
-            },
-            {
-                x: "Sun",
-                y: 43,
-            },
-        ],
-    },
-    {
-        name: "6 am",
-        data: [
-            {
-                x: "Mon",
-                y: 43,
-            },
-            {
-                x: "Tue",
-                y: 43,
-            },
-            {
-                x: "Wed",
-                y: 43,
-            },
-            {
-                x: "Thu",
-                y: 43,
-            },
-            {
-                x: "Fri",
-                y: 43,
-            },
-            {
-                x: "Sat",
-                y: 43,
-            },
-            {
-                x: "Sun",
-                y: 43,
-            },
-        ],
-    },
-    {
-        name: "6 am",
-        data: [
-            {
-                x: "Mon",
-                y: 43,
-            },
-            {
-                x: "Tue",
-                y: 43,
-            },
-            {
-                x: "Wed",
-                y: 43,
-            },
-            {
-                x: "Thu",
-                y: 43,
-            },
-            {
-                x: "Fri",
-                y: 43,
-            },
-            {
-                x: "Sat",
-                y: 43,
-            },
-            {
-                x: "Sun",
-                y: 43,
-            },
-        ],
-    },
-    {
-        name: "6 am",
-        data: [
-            {
-                x: "Mon",
-                y: 43,
-            },
-            {
-                x: "Tue",
-                y: 43,
-            },
-            {
-                x: "Wed",
-                y: 43,
-            },
-            {
-                x: "Thu",
-                y: 43,
-            },
-            {
-                x: "Fri",
-                y: 43,
-            },
-            {
-                x: "Sat",
-                y: 43,
-            },
-            {
-                x: "Sun",
-                y: 43,
-            },
-        ],
-    },
-    {
-        name: "6 am",
-        data: [
-            {
-                x: "Mon",
-                y: 43,
-            },
-            {
-                x: "Tue",
-                y: 43,
-            },
-            {
-                x: "Wed",
-                y: 43,
-            },
-            {
-                x: "Thu",
-                y: 43,
-            },
-            {
-                x: "Fri",
-                y: 43,
-            },
-            {
-                x: "Sat",
-                y: 43,
-            },
-            {
-                x: "Sun",
-                y: 43,
-            },
-        ],
-    },
-    {
-        name: "6 am",
-        data: [
-            {
-                x: "Mon",
-                y: 43,
-            },
-            {
-                x: "Tue",
-                y: 43,
+                y: 83,
             },
             {
                 x: "Wed",
@@ -332,7 +332,7 @@ const Heatmap = () => {
                     top: 0,
                     right: 0,
                     bottom: 0,
-                    left: 0,
+                    left: 10,
                 },
             },
         },
@@ -356,7 +356,7 @@ const Heatmap = () => {
                 series={chartData.series}
                 type="heatmap"
                 height={cellSize * 24 + cellGap * 23}
-                width={480}
+                width={370}
             />
         </div>
     );

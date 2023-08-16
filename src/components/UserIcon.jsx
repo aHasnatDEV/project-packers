@@ -2,20 +2,21 @@ import React from 'react';
 
 /**
  * user icon with letter
- * @param {String} firstName user first name 
- * @param {String} lastName user last name 
+ * @param {String} name user name
  * @returns icon with user name letter
  */
 
-const UserIcon = ({ firstName = String, lastName = String }) => {
-    const initials = lastName ?
-        (firstName[0] + lastName[0]).toUpperCase() :
-        firstName[0].toUpperCase();
+const UserIcon = ({ name = String }) => {
+    const userName = name.split(" ");
+    const firstName = userName[0];
+    const lastName = userName[1];
+
+    const initials = lastName ? (firstName[0] + lastName[0]).toUpperCase() : firstName[0].toUpperCase();
 
     return (
-        <div className='w-10 h-10 bg-[#FFC96B] rounded-full flex items-center justify-center'>
-            <span className='text-lg'>{initials}</span>
-        </div>
+        <button className='w-10 h-10 btn-primary'>
+            <span className='text-lg font-normal'>{initials}</span>
+        </button>
     );
 };
 

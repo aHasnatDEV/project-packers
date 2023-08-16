@@ -16,106 +16,91 @@ const Staff = () => {
     const staffData = [
         {
             id: 1,
-            firstName: 'John',
-            lastName: 'Doe',
+            name: 'John Doe',
             role: 'Super Admin',
             access: 'Full access'
         },
         {
             id: 2,
-            firstName: 'Jane',
-            lastName: 'Smith',
+            name: 'Jane Smith',
             role: 'admin',
             access: 'Limited access'
         },
         {
             id: 3,
-            firstName: 'Bob',
-            lastName: 'Johnson',
+            name: 'Bob Johnson',
             role: 'admin',
             access: 'Full access'
         },
         {
             id: 4,
-            firstName: 'Alice',
-            lastName: 'Brown',
+            name: 'Alice Brown',
             role: 'admin',
             access: 'Limited access'
         },
         {
             id: 5,
-            firstName: 'Michael',
-            lastName: 'Lee',
+            name: 'Michael Lee',
             role: 'admin',
             access: 'Full access'
         },
         {
             id: 6,
-            firstName: 'Sarah',
-            lastName: 'Wilson',
+            name: 'Sarah Wilson',
             role: 'admin',
             access: 'Limited access'
         },
         {
             id: 7,
-            firstName: 'David',
-            lastName: 'Taylor',
+            name: 'David Taylor',
             role: 'support',
             access: 'Full access'
         },
         {
             id: 8,
-            firstName: 'Emily',
-            lastName: 'Clark',
+            name: 'Emily Clark',
             role: 'support',
             access: 'Limited access'
         },
         {
             id: 9,
-            firstName: 'Ryan',
-            lastName: 'Allen',
+            name: 'Ryan Allen',
             role: 'support',
             access: 'Full access'
         },
         {
             id: 10,
-            firstName: 'Olivia',
-            lastName: 'Adams',
+            name: 'Olivia',
             role: 'support',
             access: 'Limited access'
         },
         {
             id: 11,
-            firstName: 'Sophia',
-            lastName: 'Lee',
+            name: 'Sophia Lee',
             role: 'support',
             access: 'Limited access'
         },
         {
             id: 12,
-            firstName: 'Ethan',
-            lastName: 'Wang',
+            name: 'Ethan Wang',
             role: 'support',
             access: 'Full access'
         },
         {
             id: 13,
-            firstName: 'Ava',
-            lastName: 'Garcia',
+            name: 'Ava Garcia',
             role: 'support',
             access: 'Limited access'
         },
         {
             id: 14,
-            firstName: 'Liam',
-            lastName: 'Martinez',
+            name: 'Liam',
             role: 'support',
             access: 'Full access'
         },
         {
             id: 15,
-            firstName: 'Isabella',
-            lastName: 'Lopez',
+            name: 'Isabella Lopez',
             role: 'support',
             access: 'Limited access'
         }
@@ -159,9 +144,9 @@ const Staff = () => {
                                     key={data.id}
                                     className='flex items-center gap-4'
                                 >
-                                    <UserIcon firstName={data.firstName} lastName={data.lastName} />
+                                    <UserIcon name={data.name} />
                                     <div>
-                                        <h6 className='font-semibold'>{data.firstName} {data.lastName}</h6>
+                                        <h6 className='font-semibold'>{data.name}</h6>
                                         <p className='text-gray-400'>{data.role}</p>
                                     </div>
                                 </div>)
@@ -182,9 +167,9 @@ const Staff = () => {
                                     className='p-5 border-b flex justify-between items-center'
                                 >
                                     <div className='flex items-center gap-4'>
-                                        <UserIcon firstName={data.firstName} lastName={data.lastName} />
+                                        <UserIcon name={data.name} />
                                         <div>
-                                            <h6 className='font-semibold'>{data.firstName} {data.lastName}</h6>
+                                            <h6 className='font-semibold'>{data.name}</h6>
                                             <p className='text-gray-400'>{data.access}</p>
                                         </div>
                                     </div>
@@ -197,8 +182,7 @@ const Staff = () => {
                                         </div>}
                                         btnType='px-4 py-2 border rounded-lg'
                                         body={<StaffModalBody
-                                            firstName={data.firstName}
-                                            lastName={data.lastName}
+                                            name={data.name}
                                             access={data.access}
                                             role={data.role}
                                         />}

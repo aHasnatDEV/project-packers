@@ -3,16 +3,14 @@ import UserIcon from '../../../components/UserIcon';
 
 /**
  * Modal Body
- * @param {String} firstName Staff first name
- * @param {String} lastName Staff last name
+ * @param {String} name Staff  name
  * @param {String} access Staff access
  * @param {String} role Staff role
  * @returns 
  */
 
 const StaffModalBody = ({
-    firstName = String,
-    lastName = String,
+    name = String,
     access = String,
     role = String
 }) => {
@@ -36,9 +34,9 @@ const StaffModalBody = ({
             </h4>
             <div className='p-5 flex justify-between items-center border-b border-gray-100'>
                 <div className='flex items-center gap-4'>
-                    <UserIcon firstName={firstName} lastName={lastName} />
+                    <UserIcon name={name} />
                     <div>
-                        <h6 className='font-semibold'>{firstName} {lastName}</h6>
+                        <h6 className='font-semibold'>{name}</h6>
                         <p className='text-gray-400'>{access}</p>
                     </div>
                 </div>
@@ -46,7 +44,7 @@ const StaffModalBody = ({
                     <select
                         id='role'
                         className='bg-white focus:outline-none'
-                        value={role}
+                        defaultValue={role}
                     >
                         <option value='admin'>Admin</option>
                         <option value='support'>Support</option>
@@ -65,6 +63,7 @@ const StaffModalBody = ({
                                 <input
                                     type="checkbox"
                                     className='mr-2'
+                                    value={acc}
                                 />{acc}
                             </div>
                         ))

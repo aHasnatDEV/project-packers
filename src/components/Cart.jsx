@@ -4,15 +4,23 @@ import { Link } from "react-router-dom";
  * @param {String} id -takes product id
  * @param {String} img -takes image src
  * @param {String} title -Title of the cart
+ * @param {String} cartStyle -style of the cart
  * @param {Number} price -Product price
  * @param {Function} onClickFunction -onClick method for button
  * @returns Cart Component
  */
 
-const Cart = ({ id = String, img = String, title = String, price = Number, onClickFunction = Function }) => {
+const Cart = ({
+    id = String,
+    img = String,
+    title = String,
+    price = Number,
+    onClickFunction = Function,
+    cartStyle = String
+}) => {
     return <Link to={`/product/${id}`}
         onClick={onClickFunction}
-        className='bg-white p-3 cursor-pointer flex flex-col justify-center group'
+        className={`bg-white p-3 cursor-pointer flex flex-col justify-center group ${cartStyle && cartStyle}`}
     >
         <div className="h-96 rounded-xl overflow-hidden">
             <img

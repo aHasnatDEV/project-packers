@@ -3,8 +3,8 @@ import { useTitle } from "../../Hooks/useTitle";
 import Breadcrumb from "../../components/Breadcrumb";
 import AllProducts from "./AllProducts";
 import LeftNav from "./LeftNav";
-import multimedia from '../../assets/icon/multimedia.png';
 import Pagination from "../../components/Pagination";
+import Spinner from "../../components/Spinner";
 
 
 
@@ -43,14 +43,7 @@ const AllProductsLayout = () => {
                 </aside>
                 <aside className='w-full lg:w-[80%]'>
                     {
-                        loading ? <div className='w-full h-full flex justify-center items-center'>
-                            <div>
-                                <img
-                                    src={multimedia}
-                                    className='w-20 animate-spin'
-                                />
-                            </div>
-                        </div> : <>
+                        loading ? <Spinner /> : <>
                             <AllProducts productArray={productArray} />
                             <div className='w-full mt-8 flex justify-center items-center gap-2'>
                                 <Pagination

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import star from '../assets/icon/star.svg';
 
 const PasswordSymbol = React.forwardRef(({ py, placeholder, width, value, onChange }, ref) => {
@@ -11,7 +11,7 @@ const PasswordSymbol = React.forwardRef(({ py, placeholder, width, value, onChan
                 ref={ref}
                 type="password"
                 // required={true}
-                className={`input-field bg-transparent absolute top-0 z-10 w-${width} opacity-0 py-${py}`}
+                className={`border-0 rounded-full text-[14px] duration-200 focus:outline-none focus:shadow-xl bg-transparent absolute top-0 z-10 w-${width} opacity-0 py-${py} pl-6`}
                 onChange={(event) => {
                     const passValue = event.target.value;
                     const passArray = passValue.split('');

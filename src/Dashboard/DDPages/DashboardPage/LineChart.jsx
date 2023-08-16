@@ -66,7 +66,7 @@ const LineChart = ({ requestData, orderData }) => {
                     top: 0,
                     right: 0,
                     bottom: 0,
-                    left: 0,
+                    left: 10,
                 },
             },
             colors: ['#6BCCCB', '#F2C852'],
@@ -93,7 +93,7 @@ const LineChart = ({ requestData, orderData }) => {
             series={chartData.series}
             type='area'
             height={400}
-            width={900}
+            width={1000}
         />
     );
 };

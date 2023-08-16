@@ -58,7 +58,7 @@ const SupportRight = () => {
               </p>
             </div>
             {
-              chat?.sender === 'Support' && <UserIcon firstName='Kodu' lastName='' />
+              chat?.sender === 'Support' && <UserIcon name='Kodu Azad' />
             }
           </div>)
         }

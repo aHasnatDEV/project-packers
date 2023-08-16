@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ProductGallery from './ProductGallery';
 import ProductInfo from './ProductInfo';
 import { useTitle } from '../../Hooks/useTitle';
 import Breadcrumb from '../../components/Breadcrumb';
-import { useLoaderData, useParams } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
+import useGetMethods from '../../Hooks/useGetMethods';
+import Cart from '../../components/Cart';
 
 const SingleProductLayout = () => {
     const productData = useLoaderData();
-    console.log(productData);
-
+    const { apiData } = useGetMethods(`products?category=${productData?.category}`);
+    // console.log(apiData);
+    // console.log(productData);
     useTitle(productData?.productName || '');
 
     return (
@@ -36,6 +39,19 @@ const SingleProductLayout = () => {
                         />
                     </div>
                 </div>
+            </section>
+            <section className='max-w mb-10 flex overflow-x-scroll no-scrollbar'>
+                {
+                    apiData?.docs?.map(info => <div key={info.id}>
+                        <Cart
+                            id={info.id}
+                            img={info.productThumbnail}
+                            title={info.productName}
+                            price={info.price}
+                            cartStyle='h-full w-[20rem] border'
+                        />
+                    </div>)
+                }
             </section>
         </>
     );

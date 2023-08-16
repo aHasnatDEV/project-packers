@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from '../../components/Logo';
 import { SearchField } from '../../components/SearchField';
@@ -7,8 +7,11 @@ import notification from '../../assets/icon/cd-notification-01.svg';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import ProductsDropdown from '../../components/Dropdown/ProductsDropdown';
 import UserIcon from '../../components/UserIcon';
+import { AuthContext } from '../../context/AuthProvider';
 
 const DDHeader = () => {
+    const { user } = useContext(AuthContext);
+
     return (
         <div className='border-b py-4 px-8 bg-white shadow-lg'>
             <div className='flex items-center justify-between'>
@@ -39,8 +42,8 @@ const DDHeader = () => {
                     />
                     <div className='flex items-center gap-2'>
                         {/* <img src={avatar} alt="avatar" /> */}
-                        <UserIcon firstName='Kodu' lastName='' />
-                        <span>Kodu</span>
+                        <UserIcon name={user?.name} />
+                        <span>{user?.name}</span>
                     </div>
                 </div>
             </div>

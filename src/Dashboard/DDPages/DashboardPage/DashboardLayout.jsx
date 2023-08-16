@@ -32,7 +32,7 @@ const DashboardLayout = () => {
         <section className='dd-section-div'>
             <AdminHeaders location='overview' />
             <Overview />
-            <div className='mt-8 flex items-center gap-4'>
+            <div className='w-full mt-8 flex items-center gap-4 overflow-x-scroll no-scrollbar'>
                 <div className='border rounded-lg p-5 relative'>
                     <h5 className='font-semibold text-lg absolute top-5'>Request vs Order</h5>
                     <LineChart requestData={requestData} orderData={orderData} />

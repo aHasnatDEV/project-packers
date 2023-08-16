@@ -16,20 +16,9 @@ import ProductsDropdown from "./Dropdown/ProductsDropdown";
 import { OutSideClick } from "./OutSideClick";
 
 const Nav = ({ isOpen, setOpen }) => {
-    const { user, setUser } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const { savePreviousLocation } = usePreviousLocation();
     const location = useLocation();
-    
-    useEffect(() => {
-        const options = {
-            method: 'GET',
-            credentials: "include"
-        };
-        fetch(`${import.meta.env.VITE_BASE_URL}/login/success`, options)
-            .then(response => response.json())
-            .then(response => response.status === false ? '': setUser(response))
-            .catch(err => console.error(err));
-    }, [])
 
     const lgNav = () => {
         return (

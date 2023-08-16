@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const LeftNav = () => {
-    const { setUser } = useContext(AuthContext);
+    const { userLogOut, setUser } = useContext(AuthContext);
 
     return (
         <nav className='min-w-full lg:min-w-[23%] lg:border rounded-lg lg:p-5 flex lg:flex-col gap-5'>
@@ -29,7 +29,7 @@ const LeftNav = () => {
                 </span>
             </NavLink>
             <button
-                onClick={() => setUser(false)}
+                onClick={() => userLogOut()}
             >
                 <span className='btn-outline flex items-center gap-3 py-3 px-8 w-full'>
                     <img src={logout} alt="logout" />
