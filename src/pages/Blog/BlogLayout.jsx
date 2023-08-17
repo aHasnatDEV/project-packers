@@ -1,115 +1,41 @@
-import React from 'react';
-import img1 from '../../assets/Assets-Rene-1.png';
-import img2 from '../../assets/Assets-Rene-2.png';
-import img3 from '../../assets/Assets-Rene-3.png';
-import img4 from '../../assets/Assets-Rene-4.png';
+import React, { useState } from 'react';
 import Breadcrumb from '../../components/Breadcrumb';
 import { useTitle } from '../../Hooks/useTitle';
 import BlogCart from './BlogCart';
+import useGetMethods from '../../Hooks/useGetMethods';
+import Spinner from '../../components/Spinner';
+import Pagination from '../../components/Pagination';
 
 const BlogLayout = () => {
     useTitle('Blog');
-    const allBlog = [
-        {
-            img: img1,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img3,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img2,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img4,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img2,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img1,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img4,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img3,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img2,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img1,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img4,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img2,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img4,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img2,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img1,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-        {
-            img: img3,
-            title: 'Validate your product and the market',
-            paragraph: 'You have a great product. Now, it’s time to test your idea to see if it can become a business.'
-        },
-
-    ];
+    const [page, setPage] = useState(1);
+    const { apiData, loading } = useGetMethods(`blog?page=${page}&limit=20`, page);
 
     return (
         <>
             <Breadcrumb />
             <section
-                className='section-div grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-7'
+                className={`section-div min-h-[50vh] ${loading ? 'flex items-center justify-center' : 'grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-7'}`}
             >
                 {
-                    allBlog.map((blog, i) => (
-                        <BlogCart
-                            key={i}
-                            imgSrc={blog.img}
-                            title={blog.title}
-                            paragraph={blog.paragraph}
-                        />
-                    ))
+                    loading ? <Spinner /> :
+                        apiData?.docs?.map((blog) => <React.Fragment key={blog.id}>
+                            <BlogCart
+                                id={blog.id}
+                                imgSrc={blog?.img}
+                                title={blog?.title}
+                                paragraph={blog?.summary}
+                            />
+                        </React.Fragment>)
                 }
             </section>
+            <div className='max-w mb-10 '>
+                <Pagination
+                    page={page}
+                    setPage={setPage}
+                    pageLimit={apiData?.totalPages}
+                />
+            </div>
         </>
     );
 };

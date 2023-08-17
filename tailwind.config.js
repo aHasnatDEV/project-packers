@@ -32,7 +32,9 @@ export default {
         'spin-slow': 'spin 3s linear infinite',
         wiggle: 'wiggle 1s ease-in-out infinite',
         bounce: 'bounce 1s ease-in-out infinite',
-        send: 'send .5s linear infinite'
+        send: 'send .5s linear infinite',
+        scale: 'scaleUp 1s ease-in-out infinite',
+        loading: 'loading 2s ease-in-out infinite'
       },
 
       keyframes: {
@@ -54,6 +56,22 @@ export default {
           '50%': { transform: 'translate(0px, 200px)' },
           '75%': { transform: 'translate(-2px, 0px)' },
           '100%': { transform: 'translate(0px, 0px)' },
+        },
+        scaleUp: {
+          '0%, 100%': {
+            transform: 'none',
+          },
+          '50%': {
+            transform: 'scale(1.5)'
+          }
+        },
+        loading: {
+          '0%, 100%' :{
+            backgroundPosition: '0% 50%'
+          },
+          '50%' :{
+            backgroundPosition: '100% 50%'
+          }
         }
       }
 

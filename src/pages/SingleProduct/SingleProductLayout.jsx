@@ -9,9 +9,7 @@ import Cart from '../../components/Cart';
 
 const SingleProductLayout = () => {
     const productData = useLoaderData();
-    const { apiData } = useGetMethods(`products?category=${productData?.category}`);
-    // console.log(apiData);
-    // console.log(productData);
+    const { apiData } = useGetMethods(`products?category=${productData?.category}&limit=5`);
     useTitle(productData?.productName || '');
 
     return (
@@ -48,7 +46,7 @@ const SingleProductLayout = () => {
                             img={info.productThumbnail}
                             title={info.productName}
                             price={info.price}
-                            cartStyle='h-full w-[20rem] border'
+                            cartStyle='h-full w-[25rem]'
                         />
                     </div>)
                 }

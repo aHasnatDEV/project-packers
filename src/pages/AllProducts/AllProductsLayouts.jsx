@@ -5,34 +5,14 @@ import AllProducts from "./AllProducts";
 import LeftNav from "./LeftNav";
 import Pagination from "../../components/Pagination";
 import Spinner from "../../components/Spinner";
-
+import useGetMethods from "../../Hooks/useGetMethods";
 
 
 const AllProductsLayout = () => {
     useTitle('All Products');
-    const [productArray, setPresentArray] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
-    const limit = 12;
-    console.log('Current Page Number:', page);
-    const pageLimit = Math.ceil(productArray.totalDocs / limit);
-    useEffect(() => {
-        setLoading(true);
-        const options = {
-            method: 'GET',
-            withCredentials: true
-        };
-        fetch(`${import.meta.env.VITE_BASE_URL}/products?page=${page}&limit=${limit}`, options)
-            .then(response => response.json())
-            .then(response => {
-                setPresentArray(response);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error(err);
-                setLoading(true);
-            });
-    }, [page]);
+    const { apiData, loading } = useGetMethods(`products?page=${page}&limit=12`, page);
+    console.log('from hook', loading);
 
     return (
         <>
@@ -42,17 +22,15 @@ const AllProductsLayout = () => {
                     <LeftNav />
                 </aside>
                 <aside className='w-full lg:w-[80%]'>
+                    <AllProducts productArray={apiData} />
                     {
-                        loading ? <Spinner /> : <>
-                            <AllProducts productArray={productArray} />
-                            <div className='w-full mt-8 flex justify-center items-center gap-2'>
-                                <Pagination
-                                    page={page}
-                                    setPage={setPage}
-                                    pageLimit={pageLimit}
-                                />
-                            </div>
-                        </>
+                        loading || <div className='w-full mt-8 flex justify-center items-center gap-2'>
+                            <Pagination
+                                page={page}
+                                setPage={setPage}
+                                pageLimit={apiData?.totalDocs}
+                            />
+                        </div>
                     }
                 </aside>
             </section>

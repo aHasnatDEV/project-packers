@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import useGetMethods from '../Hooks/useGetMethods';
 
 /**
  * @param {String} id -takes product id
@@ -18,25 +19,53 @@ const Cart = ({
     onClickFunction = Function,
     cartStyle = String
 }) => {
-    return <Link to={`/product/${id}`}
-        onClick={onClickFunction}
-        className={`bg-white p-3 cursor-pointer flex flex-col justify-center group ${cartStyle && cartStyle}`}
-    >
-        <div className="h-96 rounded-xl overflow-hidden">
-            <img
-                src={img}
-                alt="Product Image"
-                className='h-full w-full object-cover duration-700 group-hover:scale-150'
-            />
-        </div>
-        <div className='mt-7'>
-            <h3 className='text-2xl font-semibold'>{title}</h3>
-            <div className='flex justify-between items-center mt-4 text-base'>
-                <p>Retailer price</p>
-                <p className='font-semibold'>$ {price}</p>
-            </div>
-        </div>
-    </Link>
+    const { loading } = useGetMethods('products?limit=1')
+    console.log('cart: ',loading);
+    return <>
+        {
+            loading ?
+                <div
+                    className={`p-3 cursor-pointer flex flex-col justify-center group border ${cartStyle && cartStyle}`}
+                >
+                    <div
+                        className='w-full h-96 rounded-xl lazy-loading'
+                    />
+                    <div className='mt-7'>
+                        <h3 className='text-2xl font-semibold w-fit lazy-loading'>
+                            <span className='opacity-0'>title</span>
+                        </h3>
+                        <div className='flex justify-between items-center mt-4 text-base'>
+                            <p className='w-fit lazy-loading'>
+                                <span className='opacity-0'>Retailer price</span>
+                            </p>
+                            <p className='font-semibold w-fit lazy-loading'>
+                                <span className='opacity-0'>$ price</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                :
+                <Link to={`/product/${id}`}
+                    onClick={onClickFunction && onClickFunction}
+                    className={`bg-white p-3 cursor-pointer flex flex-col justify-center group border btn ${cartStyle && cartStyle}`}
+                >
+                    <div className='h-96 rounded-xl overflow-hidden'>
+                        <img
+                            src={img}
+                            alt='Product Image'
+                            className='h-full w-full object-cover duration-500 group-hover:scale-105'
+                        />
+                    </div>
+                    <div className='mt-7'>
+                        <h3 className='text-2xl font-semibold'>{title}</h3>
+                        <div className='flex justify-between items-center mt-4 text-base'>
+                            <p>Retailer price</p>
+                            <p className='font-semibold'>$ {price}</p>
+                        </div>
+                    </div>
+                </Link>
+        }
+    </>
 }
 
 export default Cart;

@@ -6,27 +6,24 @@ import React, { useEffect, useState } from 'react';
  */
 const ProductGallery = ({ productData = Object }) => {
     const [presentImage, setPresentImage] = useState('');
-    useEffect(()=>setPresentImage(productData?.productThumbnail),[productData]);
-
+    useEffect(() => setPresentImage(productData?.productThumbnail), [productData]);
     const imgSrc = productData?.productImages;
-
-    const imgFn = (imgSrc, key) => <img
-        key={key}
-        onClick={() => setPresentImage(imgSrc)}
-        className='border rounded-xl cursor-pointer duration-200 active:scale-75 w-full object-cover'
-        src={imgSrc} alt="product image"
-    />;
 
     return (
         <div className='w-full h-[50vh] lg:h-full flex gap-4'>
-            <aside className='w-1/4 h-full flex flex-col gap-4 overflow-auto no-scrollbar'>
+            <aside className='w-1/4 rounded-xl  h-full flex flex-col gap-4 overflow-auto no-scrollbar'>
                 {
-                    imgSrc?.map((src, i) => imgFn(src, i))
+                    imgSrc?.map((src, i) => <img
+                        key={i}
+                        onClick={() => setPresentImage(src)}
+                        className='cursor-pointer duration-200 active:scale-95 w-full object-cover'
+                        src={src} alt="product image"
+                    />)
                 }
             </aside>
-            <aside className='w-full h-full flex-1'>
+            <aside className='w-full h-full border rounded-xl flex-1 overflow-hidden'>
                 <img
-                    className='h-full w-full border rounded-xl'
+                    className='h-full w-full  duration-500 hover:scale-105'
                     src={presentImage} alt="product image"
                 />
             </aside>

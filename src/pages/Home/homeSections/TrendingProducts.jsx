@@ -1,36 +1,24 @@
 import Cart from "../../../components/Cart";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import useGetMethods from "../../../Hooks/useGetMethods";
 
 
 const TrendingProducts = () => {
-    const [productArray, setPresentArray] = useState([]);
-    console.log(import.meta.env.VITE_BASE_URL);
-    useEffect(() => {
-        const options = {
-            method: 'GET',
-            withCredentials: true
-        };
-        fetch(`${import.meta.env.VITE_BASE_URL}/products?limit=8`, options)
-            .then(response => response.json())
-            .then(response => {
-                setPresentArray(response)
-            })
-            .catch(err => console.error(err));
-    }, []);
+    const { apiData, loading } = useGetMethods('products?limit=8');
 
     return <section className="section-div">
         <h1 className="text-4xl text-center font-semibold">Trending products on  Project Packers</h1>
         <p className="mt-4 text-center text-lg text-gray-400">Get inspired by what people in your city are buying from abroad with<br /> the biggest savings</p>
-        <div className="mt-12 bg-slate-200 py-[1px] grid lg:grid-cols-4 gap-[1px]">
+        <div className="mt-12 grid lg:grid-cols-4">
             {
-                productArray?.docs?.map(product => {
+                apiData?.docs?.map(product => {
                     return <Cart
                         key={product.id}
                         id={product.id}
                         img={product.productThumbnail}
                         title={product.productName}
                         price={product.price}
+                        loading={loading}
                     />
                 })
             }

@@ -12,7 +12,7 @@ import NewPasswordPage from "../pages/AuthenticationPages/NewPassword/NewPasswor
 import AddToCartLayoutPage from "../pages/AddToCart/AddToCartLayoutPage";
 import CheckoutLayoutPage from "../pages/Checkout/CheckoutLayoutPage";
 import BlogLayout from "../pages/Blog/BlogLayout";
-import SingleBlogLayout from "../pages/SingleBlog/SingleBlogLayout";
+import SingleBlogLayout from "../pages/Blog/SingleBlogLayout";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import FAQPage from "../pages/FAQ/FAQPage";
 import Notification from "../pages/Notification/Notification";
@@ -77,8 +77,9 @@ export const router = createBrowserRouter([
                 element: <BlogLayout />
             },
             {
-                path: '/blog/9699669699669',
-                element: <SingleBlogLayout />
+                path: '/blog/:id',
+                element: <SingleBlogLayout />,
+                loader: ({params}) => fetch(`${import.meta.env.VITE_BASE_URL}/blog/${params.id}`)
             },
             {
                 path: '/about-us',

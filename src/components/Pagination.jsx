@@ -3,9 +3,10 @@ import arrow_left from '../assets/icon/cd-arrow-left-2.svg';
 import arrow_right from '../assets/icon/cd-arrow-right-2.svg';
 
 /**
+ * Pagination Component
  * @param {Number} page Current Page Number
  * @param {Number} setPage Set Current Page Number
- * @param {Number} pageLimit Page Number Limit
+ * @param {Number} pageLimit Max Page Number
  * @returns Pagination Component
  */
 const Pagination = ({ page = Number, setPage = Number, pageLimit = Number }) => {
@@ -25,16 +26,18 @@ const Pagination = ({ page = Number, setPage = Number, pageLimit = Number }) => 
   
   if (page <= maxVisibleButtons - 2) {
     buttonsToShow.push(...pageNumbers.slice(0, maxVisibleButtons - 1), '...');
-  } else if (page > pageLimit - maxVisibleButtons + 2) {
+  } 
+  else if (page > pageLimit - maxVisibleButtons + 2) {
     buttonsToShow.push('...', ...pageNumbers.slice(pageLimit - maxVisibleButtons + 1));
-  } else {
+  } 
+  else {
     const start = page - 2;
     const end = page + 2;
     buttonsToShow.push('...', ...pageNumbers.slice(start - 1, end), '...');
   }
 
   return (
-    <>
+    <div className='flex items-center gap-2'>
       <button
         className='btn-primary p-3'
         onClick={() => page > 1 && setPage(page - 1)}
@@ -56,7 +59,7 @@ const Pagination = ({ page = Number, setPage = Number, pageLimit = Number }) => 
       >
         <img src={arrow_right} />
       </button>
-    </>
+    </div>
   );
 };
 
