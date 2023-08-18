@@ -1,6 +1,6 @@
 import Products from './products.schema';
 
-const allowedQuery = new Set(['page', 'limit', 'id', 'paginate', 'role', 'category']);
+const allowedQuery = new Set(['page', 'limit', 'id', 'paginate', 'role', 'category', 'productName']);
 
 
 /**
