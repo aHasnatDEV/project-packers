@@ -4,12 +4,12 @@ import useBreadcrumb from '../Hooks/useBreadcrumb';
 
 const Breadcrumb = () => {
     const breadcrumbs = useBreadcrumb();
-
+    
     return (
         <nav className='bg-primary'>
-            <ul className='max-w py-3 flex items-center gap-1 text-white'>
+            <ul className='max-w py-3 flex items-center gap-1 text-gray-400'>
                 <li className="breadcrumb-item">
-                    <Link to="/" className='text-gray-400'>Home</Link>
+                    <Link to="/" className=''>Home</Link>
                 </li>
                 {breadcrumbs.map((breadcrumb, index) => (
                     <li
@@ -18,8 +18,9 @@ const Breadcrumb = () => {
                     >
                         <Link
                             to={breadcrumb.url}
+                            className={index < breadcrumbs.length - 1 ? 'text-gray-400' : 'text-white'}
                         >
-                           / {breadcrumb.label}
+                            / {breadcrumb.label}
                         </Link>
                     </li>
                 ))}

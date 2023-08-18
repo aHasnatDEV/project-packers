@@ -7,7 +7,6 @@ import search from '../../../assets/icon/cd-search-01.svg';
 import filter_minor from '../../../assets/icon/filter_minor.svg';
 import sort_minor from '../../../assets/icon/sort_minor.svg';
 import useGetMethods from '../../../Hooks/useGetMethods';
-import Spinner from '../../../components/Spinner';
 
 const AllProducts = () => {
   const page = 1;
@@ -47,45 +46,50 @@ const AllProducts = () => {
           />
         </div>
       </div>
-      <div className='min-h-[60vh] flex items-center justify-center'>
-        {
-          loading ? <Spinner /> :
-            <table className='w-full mt-8'>
-              <thead>
-                <tr className='bg-slate-200'>
-                  <td className='py-4 px-6'><input type="checkbox" /></td>
-                  <td className='py-4 px-6 flex items-center gap-1'>
-                    Product <img src={select} alt="select" />
-                  </td>
-                  <td className='py-4 px-6'>Inventory</td>
-                  <td className='py-4 px-6'>Price</td>
-                  <td className='py-4 px-6'>Category</td>
-                  <td className='py-4 px-6'>Published Date</td>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  apiData?.docs?.map(data => <tr key={data?.id} className='hover:bg-[#FEF9DC]'>
-                    <td className='py-4 px-6 border-b'><input type="checkbox" /></td>
-                    <td className='py-4 px-6 border-b'>
-                      <Link
-                        to={`${data?.id}`}
-                        className='flex items-center gap-3'
-                      >
-                        <img src={data?.productThumbnail} alt='product image' className='w-10' />
-                        <h4>{data?.productName}</h4>
-                      </Link>
-                    </td>
-                    <td className='py-4 px-6 border-b'>{data?.productQuantity} in stock</td>
-                    <td className='py-4 px-6 border-b'>$ {data?.price}</td>
-                    <td className='py-4 px-6 border-b'>{data?.category}</td>
-                    <td className='py-4 px-6 border-b'>{data?.publishedDate}</td>
-                  </tr>)
-                }
-              </tbody>
-            </table>
-        }
-      </div>
+      <table className='w-full mt-8'>
+        <thead>
+          <tr className='bg-slate-200'>
+            <td className='py-4 px-6'><input type="checkbox" /></td>
+            <td className='py-4 px-6 flex items-center gap-1'>
+              Product <img src={select} alt="select" />
+            </td>
+            <td className='py-4 px-6'>Inventory</td>
+            <td className='py-4 px-6'>Price</td>
+            <td className='py-4 px-6'>Category</td>
+            <td className='py-4 px-6'>Published Date</td>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            loading ?
+              [...Array(limit)].map((arr, i) => <tr key={i} className='hover:bg-[#FEF9DC]'>
+                <td className='py-4 px-6 border-b lazy-loading' />
+                <td className='py-4 px-6 border-b lazy-loading' />
+                <td className='py-4 px-6 border-b lazy-loading' />
+                <td className='py-4 px-6 border-b lazy-loading' />
+                <td className='py-4 px-6 border-b lazy-loading' />
+                <td className='py-4 px-6 border-b lazy-loading' />
+              </tr>)
+              :
+              apiData?.docs?.map(data => <tr key={data?.id} className='hover:bg-[#FEF9DC]'>
+                <td className='py-4 px-6 border-b'><input type="checkbox" /></td>
+                <td className='py-4 px-6 border-b'>
+                  <Link
+                    to={`${data?.id}`}
+                    className='flex items-center gap-3'
+                  >
+                    <img src={data?.productThumbnail} alt='product image' className='w-10' />
+                    <h4>{data?.productName}</h4>
+                  </Link>
+                </td>
+                <td className='py-4 px-6 border-b'>{data?.productQuantity} in stock</td>
+                <td className='py-4 px-6 border-b'>$ {data?.price}</td>
+                <td className='py-4 px-6 border-b'>{data?.category}</td>
+                <td className='py-4 px-6 border-b'>{data?.publishedDate}</td>
+              </tr>)
+          }
+        </tbody>
+      </table>
     </>
   );
 };

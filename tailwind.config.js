@@ -34,7 +34,7 @@ export default {
         bounce: 'bounce 1s ease-in-out infinite',
         send: 'send .5s linear infinite',
         scale: 'scaleUp 1s ease-in-out infinite',
-        loading: 'loading 2s ease-in-out infinite'
+        loading: 'loading 1s ease-in-out infinite'
       },
 
       keyframes: {

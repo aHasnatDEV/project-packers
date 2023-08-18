@@ -1,4 +1,4 @@
-import Cart from "../../../components/Cart";
+import { Cart } from "../../../components/Cart";
 import { Link } from "react-router-dom";
 import useGetMethods from "../../../Hooks/useGetMethods";
 
@@ -23,7 +23,7 @@ const TrendingProducts = () => {
                 })
             }
         </div>
-        <Link to='/all-products'>
+        <Link to='/products'>
             <button className=" mx-auto mt-8 btn-primary p-4 flex justify-center items-center gap-4">
                 View More Items
                 <span>

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Breadcrumb from '../../components/Breadcrumb';
 import { useTitle } from '../../Hooks/useTitle';
-import BlogCart from './BlogCart';
 import useGetMethods from '../../Hooks/useGetMethods';
-import Spinner from '../../components/Spinner';
 import Pagination from '../../components/Pagination';
+import { BlogCart, LazyBlogCart } from './BlogCart';
 
 const BlogLayout = () => {
     useTitle('Blog');
@@ -15,26 +14,30 @@ const BlogLayout = () => {
         <>
             <Breadcrumb />
             <section
-                className={`section-div min-h-[50vh] ${loading ? 'flex items-center justify-center' : 'grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-7'}`}
+                className={`section-div w-full min-h-[50vh] grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-7`}
             >
                 {
-                    loading ? <Spinner /> :
-                        apiData?.docs?.map((blog) => <React.Fragment key={blog.id}>
+                    !loading ?
+                        apiData?.docs?.map(blog =>
                             <BlogCart
+                                key={blog.id}
                                 id={blog.id}
                                 imgSrc={blog?.img}
                                 title={blog?.title}
                                 paragraph={blog?.summary}
-                            />
-                        </React.Fragment>)
+                            />)
+                        :
+                        [...Array(20)].map((array, i) => <LazyBlogCart key={i} />)
                 }
             </section>
             <div className='max-w mb-10 '>
-                <Pagination
-                    page={page}
-                    setPage={setPage}
-                    pageLimit={apiData?.totalPages}
-                />
+                {
+                    !loading && <Pagination
+                        page={page}
+                        setPage={setPage}
+                        pageLimit={apiData?.totalPages}
+                    />
+                }
             </div>
         </>
     );

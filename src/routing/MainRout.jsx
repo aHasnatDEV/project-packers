@@ -56,11 +56,11 @@ export const router = createBrowserRouter([
                 element: <HomeLayout />,
             },
             {
-                path: '/all-products',
+                path: '/products',
                 element: <AllProductsLayout />
             },
             {
-                path: '/product/:id',
+                path: '/products/:id',
                 element: <SingleProductLayout />,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_BASE_URL}/products/${params.id}`)
             },

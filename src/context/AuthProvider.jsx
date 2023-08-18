@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const authInfo = { user, setUser, userSingIn, userLogIn, loading, setLoading, userLogOut }
-    console.log('user:', user);
+    // console.log('user:', user);
 
     return (
         <AuthContext.Provider value={authInfo}>

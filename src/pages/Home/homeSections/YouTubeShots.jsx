@@ -1,38 +1,32 @@
-import Shots from "../../../components/Shots";
+import React, { useEffect, useState } from "react";
+import { LazyShots, Shots } from '../../../components/Shots';
 
 const YouTubeShots = ({ isHome = Boolean }) => {
     const value = isHome
-
-    const slides = [
-        {
-            videoId: 'dqeklvD30EA'
-        },
-        {
-            videoId: 'gcJe6Hhwiaw'
-        },
-        {
-            videoId: 'CKySIlyliMg'
-        },
-        {
-            videoId: 'V9Z7_6HCPsA'
-        },
-        {
-            videoId: '3h5V8LN0lTc'
-        },
-        {
-            videoId: 'ziAotzUqn1c'
-        },
-        {
-            videoId: 'sd3LWOJQg28'
-        }
-    ];
+    const [slides, setSlides] = useState();
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const options = { method: 'GET' };
+        fetch('/youtubeLink.json', options)
+            .then(response => response.json())
+            .then(response => setSlides(response))
+            .catch(err => console.error(err))
+            .finally(() => setLoading(false))
+    }, [])
 
     return <section
         className={`max-w flex gap-4 w-full px-5 overflow-scroll no-scrollbar 
             ${isHome && '-mb-24 relative -top-24'}`}
     >
         {
-            slides.map((slide, i) => <Shots key={i} videoId={slide.videoId} />)
+            loading ?
+                [...Array(8)].map((arr, i) => <React.Fragment key={i}>
+                    <LazyShots />
+                </React.Fragment>)
+                :
+                slides?.map((slide, i) => <React.Fragment key={i}>
+                    <Shots videoId={slide.videoId} />
+                </React.Fragment>)
         }
     </section>
 };

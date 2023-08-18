@@ -5,7 +5,7 @@ import { useTitle } from '../../Hooks/useTitle';
 import Breadcrumb from '../../components/Breadcrumb';
 import { useLoaderData } from 'react-router-dom';
 import useGetMethods from '../../Hooks/useGetMethods';
-import Cart from '../../components/Cart';
+import { Cart } from '../../components/Cart';
 
 const SingleProductLayout = () => {
     const productData = useLoaderData();
@@ -38,15 +38,18 @@ const SingleProductLayout = () => {
                     </div>
                 </div>
             </section>
-            <section className='max-w mb-10 flex overflow-x-scroll no-scrollbar'>
+            <section className='max-w mb-10 flex overflow-x-auto no-scrollbar'>
                 {
-                    apiData?.docs?.map(info => <div key={info.id}>
+                    apiData?.docs?.map(info => <div
+                        key={info.id}
+                        className='w-full h-full'
+                    >
                         <Cart
                             id={info.id}
                             img={info.productThumbnail}
                             title={info.productName}
                             price={info.price}
-                            cartStyle='h-full w-[25rem]'
+                            cartStyle='h-[25rem] lg:h-full w-[15rem] lg:w-[25rem]'
                         />
                     </div>)
                 }

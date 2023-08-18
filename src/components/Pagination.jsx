@@ -37,27 +37,27 @@ const Pagination = ({ page = Number, setPage = Number, pageLimit = Number }) => 
   }
 
   return (
-    <div className='flex items-center gap-2'>
+    <div className='flex items-center gap-1 lg:gap-2'>
       <button
-        className='btn-primary p-3'
+        className='btn-primary lg:p-1'
         onClick={() => page > 1 && setPage(page - 1)}
       >
-        <img src={arrow_left} />
+        <img src={arrow_left} className='w-10 h-10' />
       </button>
       {
         buttonsToShow.map((num, i) => <button
           key={i}
-          className={`py-3 px-5 ${page === num ? 'btn-primary' : 'btn-accent'}`}
+          className={`py-3 px-5 text-xs lg:text-base ${page === num ? 'btn-primary' : 'btn-accent'}`}
           onClick={() => num !== '...' && setPage(num)}
         >
           {num}
         </button>)
       }
       <button
-        className='btn-primary p-3'
+        className='btn-primary lg:p-1'
         onClick={() => page < pageLimit && setPage(page + 1)}
       >
-        <img src={arrow_right} />
+        <img src={arrow_right} className='w-10 h-10' />
       </button>
     </div>
   );
