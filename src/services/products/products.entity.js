@@ -14,7 +14,7 @@ export const allProducts = ({ db }) => async (req, res) => {
     console.log(req.query);
     const products = await db.find({ table: Products, key: { query: req.query, allowedQuery: allowedQuery } });
     if (!products) return res.status(400).send('error');
-    res.status(200).send(products);
+    res.status(200).send(products)
   }
   catch (err) {
     console.log(err);
