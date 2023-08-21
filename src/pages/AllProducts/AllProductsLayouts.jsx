@@ -11,6 +11,7 @@ const AllProductsLayout = () => {
     useTitle('All Products');
     const [page, setPage] = useState(1);
     const { apiData, loading } = useGetMethods(`products?page=${page}&limit=12`, page);
+    console.log(loading);
 
     return (
         <>

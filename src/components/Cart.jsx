@@ -50,7 +50,7 @@ export const Cart = ({
     return <>
         {
             <Link to={`/products/${id}`}
-                className={`bg-white p-3 cursor-pointer flex flex-col justify-center group border btn ${cartStyle && cartStyle}`}
+                className={`bg-white p-3 cursor-pointer flex flex-col justify-center group border duration-200 active:scale-95 ${cartStyle && cartStyle}`}
             >
                 <div className='h-96 rounded-xl overflow-hidden'>
                     <img

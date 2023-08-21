@@ -6,6 +6,8 @@ import upload from '../../../assets/icon/cd-image-upload-primary-color.svg';
 import { SearchField } from '../../../components/SearchField';
 import internet from '../../../assets/icon/cd-internet-01.svg';
 import { AllProductsContext } from '../../../context/AllProductsProvider';
+// import { Editor } from "react-draft-wysiwyg";
+// import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const AddProduct = () => {
   const { productData } = useContext(AllProductsContext);
@@ -90,6 +92,13 @@ const AddProduct = () => {
                   rows='10'
                   defaultValue={productInfo && productInfo?.description}
                 />
+                {/* <Editor
+                  editorState={editorState}
+                  toolbarClassName="toolbarClassName"
+                  wrapperClassName="wrapperClassName"
+                  editorClassName="editorClassName"
+                  onEditorStateChange={this.onEditorStateChange}
+                /> */}
               </div>
             </div>
           </div>
@@ -111,7 +120,7 @@ const AddProduct = () => {
                   type='text'
                   {...register('subCategory')}
                   className='input-field-dd w-full p-2'
-                  // defaultValue={productInfo && productInfo?.subCategory}
+                // defaultValue={productInfo && productInfo?.subCategory}
                 />
               </div>
               <div>
@@ -199,7 +208,7 @@ const AddProduct = () => {
                 fieldStyle='input-field-dd w-full p-2'
                 placeholder='Search'
                 flexOne={true}
-              searchValue={productInfo && productInfo?.productLink}
+                searchValue={productInfo && productInfo?.productLink}
               />
             </div>
           </div>
