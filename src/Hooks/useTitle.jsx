@@ -1,7 +1,9 @@
 import { useEffect } from "react"
 
 /**
- * Set title
+ * Set title in page
+ * @param {String} headerTitle text for page title
+ * @returns Set title
  */
 export const useTitle = (headerTitle = String) => {
   useEffect(() => {

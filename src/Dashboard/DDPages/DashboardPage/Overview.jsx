@@ -1,5 +1,4 @@
 import React from 'react';
-import AdminHeaders from '../../DDComponents/AdminHeaders';
 
 const Overview = () => {
     const orderData = [

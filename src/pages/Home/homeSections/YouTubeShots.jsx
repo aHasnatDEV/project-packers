@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { LazyShots, Shots } from '../../../components/Shots';
 
+
+/**
+ * YouTube Shots
+ * @param {Boolean} isHome location home page true / other page false  
+ * @returns YouTube Shots Component
+ */
 const YouTubeShots = ({ isHome = Boolean }) => {
     const value = isHome
     const [slides, setSlides] = useState();

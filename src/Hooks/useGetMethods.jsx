@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 const useGetMethods = (apiLink = String, effectDependency = String) => {
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(true);
+  // console.log(import.meta.env.VITE_BASE_URL);
   useEffect(() => {
     setLoading(true);
     const options = {
